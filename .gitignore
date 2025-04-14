@@ -1,0 +1,33 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+env/
+
+# IDE specific files
+.vscode/
+*.code-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Snapshots directory
+snapshots/
+
+# Compiled Cython files
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Media files
+*.mp4
+*.avi
+*.mov
