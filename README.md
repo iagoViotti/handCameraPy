@@ -65,12 +65,6 @@ touchDesignerBootlag/
 - This repository is for **educational purposes** and is not intended for production use.
 - The snapshots directory is ignored by Git to prevent cluttering the repository with generated images.
 
-## Future Improvements
-
-- Add gesture-based controls for more interactive features.
-- Optimize performance for smoother real-time processing.
-- Explore additional Mediapipe functionalities, such as pose or face detection.
-
 ## License
 
 This project is open-source and available for study purposes. Feel free to modify and experiment with the code.
