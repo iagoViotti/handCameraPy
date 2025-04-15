@@ -1,4 +1,4 @@
-# TouchDesigner Bootlag
+# HandCamera Py
 
 This repository is a **study project** focused on real-time hand tracking and interaction using Python, OpenCV, and Mediapipe. The goal is to explore computer vision techniques and experiment with hand gesture recognition and dynamic visual effects.
 
