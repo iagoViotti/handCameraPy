@@ -90,12 +90,21 @@ def update():
             mask_3ch = cv2.merge([mask, mask, mask])
             dark_frame = cv2.addWeighted(rgb, 0.4, overlay, 0.6, 0)
             rgb = np.where(mask_3ch == 255, rgb, dark_frame)
+            # draw the corners of the rectangle on the frame
+            cv2.line(rgb, (x1 - 1, y1 - 1), (x1 - 1, y1 + 20), (255, 255, 255), 1)
+            cv2.line(rgb, (x1 - 1, y1 - 1), (x1 + 20, y1 - 1), (255, 255, 255), 1)
+            cv2.line(rgb, (x2 + 1, y2 + 1), (x2 + 1, y2 - 20), (255, 255, 255), 1)
+            cv2.line(rgb, (x2 + 1, y2 + 1), (x2 - 20, y2 + 1), (255, 255, 255), 1)
+            cv2.line(rgb, (x1 - 1, y2 + 1), (x1 - 1, y2 - 20), (255, 255, 255), 1)
+            cv2.line(rgb, (x1 - 1, y2 + 1), (x1 + 20, y2 + 1), (255, 255, 255), 1)
+            cv2.line(rgb, (x2 + 1, y1 - 1), (x2 + 1, y1 + 20), (255, 255, 255), 1)
+            cv2.line(rgb, (x2 + 1, y1 - 1), (x2 - 20, y1 - 1), (255, 255, 255), 1)
 
-            # Snapshot trigger logic
+        # Snapshot trigger logic
         if (abs(left_thumb.x - left_index.x) < 0.04 and abs(left_thumb.y - left_index.y) < 0.04 and
             abs(right_thumb.x - right_index.x) < 0.04 and abs(right_thumb.y - right_index.y) < 0.04):
             snapshot = rgb[y1:y2, x1:x2]
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.datetime.now().strftime("%d%m%Y_%H%M%S")
             path = f"snapshots/snapshot_{timestamp}.png"
             cv2.imwrite(path, cv2.cvtColor(snapshot, cv2.COLOR_RGB2BGR))  # Convert back to BGR for saving
             print(f"Snapshot saved: {path}")
