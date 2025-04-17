@@ -22,7 +22,7 @@ frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Tkinter setup
 root = tk.Tk()
-root.title("Hand Rectangle Drawing")
+root.title("Handsnap")
 canvas = tk.Label(root)
 canvas.pack()
 
@@ -82,8 +82,8 @@ def update():
                 mid_x = (thumb_coords[0] + index_coords[0]) // 2
                 mid_y = (thumb_coords[1] + index_coords[1]) // 2
 
-                cv2.circle(rgb, thumb_coords, 4, (255, 255, 255), 1, 1)
-                cv2.circle(rgb, index_coords, 4, (255, 255, 255), 1, 1)
+                # cv2.circle(rgb, thumb_coords, 4, (255, 255, 255), 1, 1)
+                # cv2.circle(rgb, index_coords, 4, (255, 255, 255), 1, 1)
 
                 points.append((mid_x, mid_y))
 
