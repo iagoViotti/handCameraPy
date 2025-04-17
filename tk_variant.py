@@ -6,6 +6,9 @@ import datetime
 import tkinter as tk
 from PIL import Image, ImageTk
 
+# Initialize variables
+last_snapshot_time = 0
+
 # Setup snapshot directory
 os.makedirs("snapshots", exist_ok=True)
 
@@ -48,6 +51,7 @@ def show_snapshot(image):
 
 
 def update():
+    global last_snapshot_time
     try:
         ret, frame = cap.read()
         if not ret:
@@ -108,14 +112,17 @@ def update():
                 cv2.line(rgb, (x2 + 1, y1 - 1), (x2 - 20, y1 - 1), (255, 255, 255), 1)
 
             # Snapshot trigger logic
+            current_time = datetime.datetime.now().timestamp()  # Get current time in seconds
             if (abs(left_thumb.x - left_index.x) < 0.04 and abs(left_thumb.y - left_index.y) < 0.04 and
                 abs(right_thumb.x - right_index.x) < 0.04 and abs(right_thumb.y - right_index.y) < 0.04):
-                snapshot = rgb[y1:y2, x1:x2]
-                timestamp = datetime.datetime.now().strftime("%d%m%Y_%H%M%S")
-                path = f"snapshots/snapshot_{timestamp}.png"
-                cv2.imwrite(path, cv2.cvtColor(snapshot, cv2.COLOR_RGB2BGR))  # Convert back to BGR for saving
-                print(f"Snapshot saved: {path}")
-                show_snapshot(snapshot)
+                if current_time - last_snapshot_time > 0.5:
+                    snapshot = rgb[y1:y2, x1:x2]
+                    timestamp = datetime.datetime.now().strftime("%d%m%Y_%H%M%S")
+                    path = f"snapshots/snapshot_{timestamp}.png"
+                    cv2.imwrite(path, cv2.cvtColor(snapshot, cv2.COLOR_RGB2BGR))  # Convert back to BGR for saving
+                    print(f"Snapshot saved: {path}")
+                    show_snapshot(snapshot)
+                    last_snapshot_time = current_time  # Update the last snapshot time
 
         # Convert to ImageTk and display
         img = Image.fromarray(rgb)  # Use RGB frame for display
