@@ -36,8 +36,8 @@ pip install opencv-python mediapipe numpy
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/touchDesignerBootlag.git
-   cd touchDesignerBootlag
+   git clone https://github.com/your-username/handCameraPy.git
+   cd handCameraPy
    ```
 
 2. Run the program:
